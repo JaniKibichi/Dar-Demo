@@ -57,10 +57,10 @@ if(!empty($_POST)){
 			        	//9c. Send the user todays voice tip via AT SMS API
 			        	$response = "END Please check your SMS inbox.\n";
 
-						$code = '20880';
+						$code = '77000';
             			$recipients = $phoneNumber;
             			$message    = "https://hahahah12-grahamingokho.c9.io/kaka.mp3";
-            			$gateway    = new AfricasTalkingGateway($username, $apikey);
+            			$gateway    = new AfricasTalkingGateway($username, $apiKey, "sandbox");
             			try { $results = $gateway->sendMessage($recipients, $message, $code); }
             			catch ( AfricasTalkingGatewayException $e ) {echo "Encountered an error while sending: ".$e->getMessage(); }
 
@@ -77,7 +77,7 @@ if(!empty($_POST)){
 			          	//Make a call
 			         	$from="+254711082300"; $to=$phoneNumber;
 			          	// Create a new instance of our awesome gateway class
-			          	$gateway = new AfricasTalkingGateway($username, $apikey);
+			          	$gateway = new AfricasTalkingGateway($username, $apiKey, "sandbox");
 			          	try { $gateway->call($from, $to); }
 			          	catch ( AfricasTalkingGatewayException $e ){echo "Encountered an error when calling: ".$e->getMessage();}
 
@@ -96,7 +96,7 @@ if(!empty($_POST)){
 						//JSON encode
 						$recipientStringFormat = json_encode($recipients);
 						//Create an instance of our gateway class, pass your credentials
-						$gateway = new AfricasTalkingGateway($username, $apiKey);    
+						$gateway = new AfricasTalkingGateway($username, $apiKey, "sandbox");    
 						try { $results = $gateway->sendAirtime($recipientStringFormat);}
 						catch(AfricasTalkingGatewayException $e){ echo $e->getMessage(); }
 
